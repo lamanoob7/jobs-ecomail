@@ -1,0 +1,19 @@
+{
+    "name": "lamanoob/jobs-ecomail",
+    "description": "Job task for Ecomail",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Lamanoob\\JobsEcomail\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Petr Simecek",
+            "email": "petrsimecek87@seznam.cz"
+        }
+    ],
+    "require-dev": {
+        "laravel/sail": "^1.31"
+    }
+}

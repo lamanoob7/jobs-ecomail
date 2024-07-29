@@ -3,6 +3,7 @@
 namespace App\View\Component\Tasks\Listing;
 
 use App\Models\Task;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -14,7 +15,7 @@ class Index extends Component {
      * @param Task[] $tasks
      */
     public function __construct(
-        public array $tasks
+        public LengthAwarePaginator $tasks
     ) {}
 
     /**

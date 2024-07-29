@@ -1,14 +1,18 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+
+Route::get('/old', function () {
     return view('welcome');
 });
 
-Route::get('/tasks', function () {
-    return view('tasks.index')
-        ->with('tasks', []);
-});
+
+Route::get('/', [TaskController::class, 'index'])->name('task.index');
+
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
+
+Route::post('/tasks', [TaskController::class, 'store'])->name('task.store');;
 
 

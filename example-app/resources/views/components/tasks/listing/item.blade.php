@@ -1,6 +1,7 @@
 <tr>
     <th scope="row">
         <a class="" href="{{ route('task.edit', $task) }}">Edit</a>
+        <a class="" href="{{ route('task.delete', $task) }}">Del</a>
 
     </th>
     <td>

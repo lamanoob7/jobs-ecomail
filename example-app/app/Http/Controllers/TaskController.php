@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,12 +13,15 @@ class TaskController extends Controller
 {
     public function index(): View
     {
-        $tasks = Task::orderBy('priority')->orderBy('target_date')->orderBy('name')->paginate(15);
+        $tasks = Task::orderBy('priority')
+                    ->orderBy('target_date')
+                    ->orderBy('name')
+                    ->paginate(15);
         return view('task.index', ['tasks' => $tasks]);
     }
 
     /**
-     * Show the form to create a new blog post.
+     * Show the form to create a new task.
      */
     public function create(): View
     {
@@ -25,7 +29,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form to create a new blog post.
+     * Show the form to edit a new task.
      */
     public function edit(string $id): View
     {
@@ -35,7 +39,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a new blog post.
+     * Store a new task.
      */
     public function store(StoreTaskRequest $request): RedirectResponse
     {
@@ -51,17 +55,15 @@ class TaskController extends Controller
     }
 
     /**
-     * Change a blog post.
+     * Soft delete task.
      */
-    public function update(StoreTaskRequest $request, string $id): RedirectResponse
+    public function delete(string $id): RedirectResponse
     {
         $task = Task::find($id);
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->priority = $request->priority;
-        $task->target_date = $request->target_date;
-        $task->finished_at = $request->finished_at;
-        $task->save();
+        if($task  && !$task->trashed()){
+            $task->deleted_at = Carbon::now();
+            $task->save();
+        }
 
         return to_route('task.index', ['task' => $task->id]);
     }

@@ -15,7 +15,7 @@ class Index extends Component {
      * @param Task[] $tasks
      */
     public function __construct(
-        public LengthAwarePaginator $tasks
+        public $tasks
     ) {}
 
     /**

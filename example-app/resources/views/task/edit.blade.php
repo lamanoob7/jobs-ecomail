@@ -4,8 +4,9 @@
 
 @section('content')
 
-<form action="{{ route('task.store') }}" method="POST">
+<form action="{{ route('task.update', $task) }}" method="POST">
     @csrf
+    @method('PUT')
     <div>
         <label for="name">Task name</label>
 
@@ -13,7 +14,7 @@
             type="text"
             name="name"
             class="@error('name') is-invalid @enderror"
-            value="{{ old('name') }}"
+            value="{{ $task->name }}"
             >
 
         @error('name')
@@ -27,7 +28,7 @@
             type="text"
             name="description"
             class="@error('description') is-invalid @enderror"
-            value="{{ old('description') }}"
+            value="{{ $task->description }}"
             >
 
         @error('description')
@@ -42,7 +43,7 @@
             type="number"
             name="priority"
             class="@error('priority') is-invalid @enderror"
-            value="{{ old('priority') }}"
+            value="{{ $task->priority }}"
             >
 
         @error('priority')
@@ -62,7 +63,7 @@
             <input datepicker id="default-datepicker-target_date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"
             id="target_date"
             name="target_date"
-            value="{{ old('target_date') }}"
+            value="{{ $task->target_date }}"
             @error('target_date') is-invalid @enderror
             >
         </div>
@@ -85,7 +86,7 @@
             <input datepicker id="default-datepicker-finished_at" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"
             id="finished_at"
             name="finished_at"
-            value="{{ old('finished_at') }}"
+            value="{{ $task->finished_at }}"
             @error('finished_at') is-invalid @enderror
             >
         </div>

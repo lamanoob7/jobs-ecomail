@@ -13,7 +13,7 @@ class Item extends Component {
      * @param Task $task
      */
     public function __construct(
-        public Task $task
+        public $task
     ) {}
 
     /**

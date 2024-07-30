@@ -41,6 +41,15 @@ test('task_store', function () {
     $this->assertSame(1, $tasksCountNew);
 });
 
+test('task_show', function () {
+    $task = Task::factory()->create();
+    $response = $this->get(route('task.show', $task));
+
+    $response->assertStatus(200);
+    $response->assertSeeText('Priority: ');
+    $response->assertSeeText($task->name);
+});
+
 test('task_edit', function () {
     $task = Task::factory()->create();
     $response = $this->get(route('task.edit', $task));

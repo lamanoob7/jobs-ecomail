@@ -18,6 +18,8 @@ Route::post('/tasks', [TaskController::class, 'store'])->name('task.store');
 
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('task.edit');
 
+Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('task.show');
+
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('task.update');
 
 // This should be rather method=DELETE, but due to time allocated I decided to use it this way

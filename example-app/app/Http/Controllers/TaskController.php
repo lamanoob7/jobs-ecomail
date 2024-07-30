@@ -45,11 +45,21 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form to edit a new task.
+     * Show the form to edit task.
      */
     public function edit(string $id): View
     {
         return view('task.edit', [
+            'task' => Task::findOrFail($id)
+        ]);
+    }
+
+    /**
+     * Show task.
+     */
+    public function show(string $id): View
+    {
+        return view('task.show', [
             'task' => Task::findOrFail($id)
         ]);
     }

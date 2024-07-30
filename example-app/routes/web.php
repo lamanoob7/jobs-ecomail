@@ -20,6 +20,7 @@ Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('task.edit
 
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('task.update');
 
+// This should be rather method=DELETE, but due to time allocated I decided to use it this way
 Route::get('/tasks/{id}/delete', [TaskController::class, 'delete'])->name('task.delete');
 
 

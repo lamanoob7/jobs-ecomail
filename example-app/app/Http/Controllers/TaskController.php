@@ -29,6 +29,22 @@ class TaskController extends Controller
     }
 
     /**
+     * Store a new task.
+     */
+    public function store(StoreTaskRequest $request): RedirectResponse
+    {
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->priority = $request->priority;
+        $task->target_date = $request->target_date;
+        $task->finished_at = $request->finished_at;
+        $task->save();
+
+        return to_route('task.index', ['task' => $task->id]);
+    }
+
+    /**
      * Show the form to edit a new task.
      */
     public function edit(string $id): View
@@ -39,11 +55,11 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a new task.
+     * Update a task.
      */
-    public function store(StoreTaskRequest $request): RedirectResponse
+    public function update(StoreTaskRequest $request, string $id): RedirectResponse
     {
-        $task = new Task();
+        $task = Task::find($id);
         $task->name = $request->name;
         $task->description = $request->description;
         $task->priority = $request->priority;
